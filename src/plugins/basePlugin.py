@@ -1,6 +1,4 @@
 class BasePlugin:
-    # TODO: get output File
-
     version = None
     pluginName = None
 
@@ -13,6 +11,12 @@ class BasePlugin:
 
     def run(self):
         raise NotImplementedError
+
+    def input(self, inp):
+        pass
+
+    def get_website(self):
+        return "No Site Set"
 
     @classmethod
     def get_name(cls):

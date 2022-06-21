@@ -1,9 +1,7 @@
-import neopixel
-
 from src.output.utils import Utils
 
 
-class NeoMatrix:
+class Shellout:
     """
     Handels all the Conversion from Application to String
     The Application must be horizontal
@@ -15,15 +13,14 @@ class NeoMatrix:
 
     __pixels = object
 
-    def __init__(self, width: int, height: int, pixels: neopixel.NeoPixel):
-        self.width = width
-        self.height = height
+    def __init__(self, width: int, height: int):
+        self.width = int(width)
+        self.height = int(height)
 
-        self.__pixels = pixels
         self.utils = Utils()
 
-        self.matrix = [[(0, 0, 0) for j in range(height)] for i in range(width)]
-        self.omatrix = [[(0, 0, 0) for j in range(height)] for i in range(width)]
+        self.matrix = [[(0, 0, 0) for j in range(self.height)] for i in range(self.width)]
+        self.omatrix = [[(0, 0, 0) for j in range(self.height)] for i in range(self.width)]
 
     def __getitem__(self, item):
         if len(item) != 2:
@@ -45,8 +42,7 @@ class NeoMatrix:
 
         for i in range(len(changes)):
             pixelChange = (self.utils.getNumForCords(changes[i][0], changes[i][0], self.height))
-            self.__pixels[pixelChange] = self.matrix[changes[i][0]][changes[i][0]]
-        self.__pixels.write()
+            print(pixelChange)
 
     def fill_all(self, color: tuple):
         """
@@ -56,8 +52,7 @@ class NeoMatrix:
         for i in range(len(self.matrix)):
             for j in range(len(self.matrix[i])):
                 self.matrix[i][j] = color
-        self.__pixels.fill(color)
-        self.__pixels.write()
+        print('Fill: ' + str(color))
 
     def set_matrix(self, matrix):
         """

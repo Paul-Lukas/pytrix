@@ -1,5 +1,7 @@
-from ..basePlugin import BasePlugin
 import time
+
+from ..basePlugin import BasePlugin
+
 
 class Testris(BasePlugin):
     def __init__(self, app, output):
@@ -9,5 +11,10 @@ class Testris(BasePlugin):
 
     def run(self):
         print("tetris")
-        self.out.fill_all((0,0,0))
+        while True:
+            self.out.fill_all((0, 0, 0))
+            time.sleep(5)
         print("fin")
+
+    def input(self, inp):
+        pass

@@ -130,3 +130,6 @@ dmypy.json
 
 # Config of Pyxel
 config.txt
+
+# Files from pycharm
+.idea/

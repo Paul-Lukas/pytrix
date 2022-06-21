@@ -2,3 +2,17 @@ body {
   margin: 0;
   background-color: #d1d9ff;
 }
+
+#startbutton {
+    height: 100%;
+    width: 100%;
+    background-color: #795548;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#starttext {
+    flex: 0 0 5rem;
+    color: #ffffff;
+}
