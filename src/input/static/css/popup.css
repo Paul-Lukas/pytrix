@@ -1,56 +1,58 @@
-/* The Overlay (background) */
 .popup {
-  /* Height & width depends on how you want to reveal the overlay (see JS below) */   
-  height: 100%;
-  width: 0;
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  background-color: rgb(0,0,0); /* Black fallback color */
-  background-color: rgba(0,0,0, 0.9); /* Black w/opacity */
-  overflow-x: hidden; /* Disable horizontal scroll */
-  transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+	display: flex;
+	box-sizing: border-box;
+	flex-flow: column;
+	position: fixed;
+	z-index: 99999;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 70%;
+	height: 30%;
+	background-color: #6f79a8;
+	padding: 20px;
+	border-radius: 5px;
+
+    justify-content: center;
+    align-items: center;
 }
 
-/* Position the content inside the overlay */
-.popup_container {
-  position: relative;
-  top: 25%; /* 25% from the top */
-  width: 100%; /* 100% width */
-  text-align: center; /* Centered text/links */
-  margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+.popup h1 {
+    display: block;
+    cursor: pointer;
+    border: groove;
+    flex: inherit;
+    background-color: #9fa8da;
 }
 
-/* The navigation links inside the overlay */
-.popup a {
-  padding: 8px;
-  text-decoration: none;
-  font-size: 36px;
-  color: #818181;
-  display: block; /* Display block instead of inline */
-  transition: 0.3s; /* Transition effects on hover (color) */
+.popup h1:hover {
+    color: #795548;
 }
 
+.closebtn {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    color: #ffffff;
+    display: block;
+    transition: 0.3s;
 
-/* Position the close button (top right corner) */
-.popup .closebtn {
-  position: absolute;
-  top: 20px;
-  right: 45px;
-  font-size: 60px;
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 4rem;
+    margin-left: 50px;
 }
 
-/* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
-@media screen and (max-height: 450px) {
-  .popup a {font-size: 20px}
-  .popup .closebtn {
-    font-size: 40px;
-    top: 15px;
-    right: 35px;
-  }
+.closebtn:hover {
+    color: #795548;
 }
 
-#start_popup {
-  display: block;
+.popup-underlay {
+	background-color: rgba(0, 0, 0, 0.5);
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 99998;
 }

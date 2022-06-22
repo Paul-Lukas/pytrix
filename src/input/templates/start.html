@@ -9,24 +9,29 @@
 
 <div class="popup" id="start_popup">
   <a class="closebtn" href="javascript:void(0)" onclick="closeNav()">&times;</a>
-
-  <section class="popup_container">
-    <h1 onclick="startPlugin()">START PLUGIN: {{ start_name }}</h1>
-  </section>
+  <h1 onclick="startPlugin()">START PLUGIN: {{ start_name }}</h1>
 </div>
+
+<div class="popup-underlay" id="start_popup_underlay"></div>
+
 
 {{ plug_html | safe }}
 
 <script>
   function closeNav() {
-    document.getElementById("myNav").style.display = "none";
+    document.getElementById("start_popup").remove();
+    document.getElementById("start_popup_underlay").remove();
   }
 
   function startPlugin() {
+    document.getElementById("start_popup").remove();
+    document.getElementById("start_popup_underlay").remove();
+
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", "/plugin/-1/input?start_id={{ start_id }}", false ); // false for synchronous request
     xmlHttp.send( null );
-    document.getElementById("myNav").style.display = "none";
+
+    // TODO: Add Output after Plugin is finished
   }
 
 </script>

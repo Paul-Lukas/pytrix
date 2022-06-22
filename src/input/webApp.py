@@ -12,20 +12,21 @@ class WebApp:
     def set_endpoints(self):
         self.app.add_url_rule('/', 'menu', self.main_menu, methods=['GET'])
         self.app.add_url_rule('/plugin/<int:plug_id>', 'plugin', self.plugin, methods=['GET'])
-        self.app.add_url_rule('/plugin/<int:plug_id>/input', 'plug_input', self.imput, methods=['GET'])
+        self.app.add_url_rule('/plugin/<string:plug_id>/input', 'plug_input', self.input, methods=['GET'])
 
     def run(self):
         self.app.run(debug=False)
 
-    def imput(self, plug_id):
+    def input(self, plug_id):
+        plug_id = int(plug_id)
         input_str = request.args
 
         # Main Application has id -1
         if plug_id == -1:
-            # TODO:
             start_id = input_str.get("start_id")
             self.base.run_plugin(start_id)
         else:
+            # TODO: disable passing input if plugin does not run
             self.base.input_plugin(plug_id, input_str)
 
         # TODO: Return anpassen
