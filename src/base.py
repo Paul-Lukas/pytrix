@@ -24,7 +24,7 @@ class Base:
             import board
             import neopixel
 
-            # TODO: Get pin from config
+            # TODO: Get raspy gpio pin from config
             strip_lengh = width * height
             pixels = neopixel.NeoPixel(board.D18, strip_lengh, auto_write=False)
 
@@ -72,23 +72,15 @@ class Base:
                         print(e)
 
     def get_plugin_site(self, plug_id):
-        self.plugins[int(plug_id)][2].get_website()
+        self.plugins[int(plug_id)][2].get_html()
 
     def run_plugin(self, plug_id):
         self.plugins[int(plug_id)][2].run()
 
     def input_plugin(self, plug_id, input_str):
-        # Main Application has id -1
-        if plug_id == -1:
-            input_str.get("start")
-
-        else:
-            self.plugins[int(plug_id)][2].input(input_str)
+        self.plugins[int(plug_id)][2].input(input_str)
 
     def run(self):
-        # TODO: create Webinterface and parse List (async)
-
         print("trying to create Webinterface")
         web_app = WebApp(self)
         web_app.run()
-        print("WebInterface Running")

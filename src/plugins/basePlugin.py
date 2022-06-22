@@ -15,7 +15,7 @@ class BasePlugin:
     def input(self, inp):
         pass
 
-    def get_website(self):
+    def get_html(self):
         return "No Site Set"
 
     @classmethod

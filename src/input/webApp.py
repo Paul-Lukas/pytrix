@@ -1,6 +1,3 @@
-import os
-import pathlib
-
 from flask import Flask, render_template, request
 
 
@@ -22,20 +19,23 @@ class WebApp:
 
     def imput(self, plug_id):
         input_str = request.args
-        self.base.input_plugin(plug_id, input_str)
+
+        # Main Application has id -1
+        if plug_id == -1:
+            # TODO:
+            start_id = input_str.get("start_id")
+            self.base.run_plugin(start_id)
+        else:
+            self.base.input_plugin(plug_id, input_str)
+
         # TODO: Return anpassen
         return 'hui input'
 
     def plugin(self, plug_id):
-        # TODO: get plugin page
-        # plug_site = self.base.get_plugin_site(plug_id)
-        # self.base.run_plugin(plug_id)
-        start_path = os.path.join(pathlib.Path(__file__).parent.resolve(), 'static', 'html', 'start.html')
-
-        with open(start_path, "r") as f:
-            plug_html = f.read()
-
-        return render_template('menu.html', plugins=self.plugins, plug_html=plug_html)
+        plugin_id, plugin_name, plugin = self.plugins[int(plug_id)]
+        plug_html = self.base.get_plugin_site(plugin_id)
+        return render_template('start.html', plugins=self.plugins, plug_html=plug_html, start_name=plugin_name,
+                               start_id=plugin_id)
 
     def main_menu(self):
-        return render_template('menu.html', plugins=self.plugins, plug_html="")
+        return render_template('menu.html', plugins=self.plugins)
