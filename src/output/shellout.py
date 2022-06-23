@@ -19,7 +19,9 @@ class Shellout:
 
         self.utils = Utils()
 
+        # noinspection PyUnusedLocal
         self.matrix = [[(0, 0, 0) for j in range(self.height)] for i in range(self.width)]
+        # noinspection PyUnusedLocal
         self.omatrix = [[(0, 0, 0) for j in range(self.height)] for i in range(self.width)]
 
     def __getitem__(self, item):

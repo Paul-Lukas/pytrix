@@ -2,7 +2,8 @@ import random
 
 
 class Utils:
-    def random_tuple(self, lengh: int, **color_params) -> tuple:
+    @staticmethod
+    def random_tuple(lengh: int, **color_params) -> tuple:
         """
         :param lengh: lengh of tupel
         :param color_params: min or max to set minimum / maximum value of color (0 - 255 by default)
@@ -29,7 +30,8 @@ class Utils:
                 matrix[i][j] = self.random_tuple(3)
         return matrix
 
-    def getChangedIndices(self, array1, array2) -> list:
+    @staticmethod
+    def getChangedIndices(array1, array2) -> list:
         """
         generates a List of tuples with the Coordinates which have changed from array1 to array2
         @param array1: first array
@@ -43,7 +45,8 @@ class Utils:
                     out.append((i, j))
         return out
 
-    def getNumForCords(self, x: int, y: int, yLen: int):
+    @staticmethod
+    def getNumForCords(x: int, y: int, yLen: int):
         """
         calculates the Number in the Pixel String from Coordinates
         @param x: x value

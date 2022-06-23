@@ -1,3 +1,4 @@
+# noinspection PyUnresolvedReferences
 import neopixel
 
 from src.output.utils import Utils

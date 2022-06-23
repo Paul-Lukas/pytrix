@@ -1,7 +1,7 @@
 import tkinter as tk
 
 
-class Simulator():
+class Simulator:
     matrix = []
     oldmatrix = []
     canvas = tk.Canvas
@@ -9,6 +9,7 @@ class Simulator():
     size = 20
 
     def __init__(self, width: int, height: int):
+        self.oldMatrix = None
         self.width = int(width)
         self.height = int(height)
 
@@ -36,7 +37,8 @@ class Simulator():
             raise ValueError('Index needs two values example: [1, 2]')
         self.matrix[key[0]][key[1]] = value
 
-    def __getChangedIndices(self, array1, array2):
+    @staticmethod
+    def __getChangedIndices(array1, array2):
         out = []
         for i in range(len(array1)):
             for j in range(len(array1[i])):
