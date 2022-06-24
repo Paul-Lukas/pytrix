@@ -2,6 +2,7 @@ from ..basePlugin import BasePlugin
 import time
 import random
 import os
+import pathlib
 
 class FlappyBird(BasePlugin):
     width = 15
