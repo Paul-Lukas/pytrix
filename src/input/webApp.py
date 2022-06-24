@@ -37,4 +37,4 @@ class WebApp:
         return render_template('menu.html', plugins=self.plugins)
 
     def run(self):
-        self.app.run(debug=False)
+        self.app.run(debug=False, host="0.0.0.0")
