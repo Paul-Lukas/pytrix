@@ -27,11 +27,11 @@ class Base:
             import neopixel
 
             # TODO: Get raspy gpio pin from config
-            strip_lengh = width * height
+            strip_lengh = int(width) * int(height)
             pixels = neopixel.NeoPixel(board.D18, strip_lengh, auto_write=False)
 
             from src.output.matrix import NeoMatrix
-            self.output = NeoMatrix(width, height, pixels)
+            self.output = NeoMatrix(int(width), int(height), pixels)
 
         self.plugins = []
         self.generate_plugin_list()
