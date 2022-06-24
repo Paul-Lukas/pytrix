@@ -14,7 +14,7 @@ class Base:
         width = config.get_config()['main']['width']
         height = config.get_config()['main']['height']
 
-        if False:
+        if self.config.get_config()['main']['use Simulation Gui'] == "True":
             # TODO: use sim not shellout (make Tkinter work with threads)
             print("Importing Sim")
             from src.output.shellout import Shellout
