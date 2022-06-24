@@ -1,4 +1,4 @@
-﻿# How to write a Plugin
+# How to write a Plugin
 
 ## Struktur
 Alle Plugins bestehen aus einem Ordner, welcher wie das Plugin benannt ist. Dieser Ordner wird samt aller Dateien, am Ende in den plugin Ordner von pytrix importiert.
@@ -29,13 +29,13 @@ class Testris(BasePlugin):
         self.version = "pre 0.1"
 
     def run(self):
-		pass
+        pass
 
     def input(self, inp):
         pass
 
-	def get_html(self):
-		pass
+    def get_html(self):
+        pass
 ```
 
 ### Was macht was?
@@ -78,6 +78,26 @@ Die Input Methode muss keinen Return Wert liefern. (Dieser kann von euch aber th
 
 #### Die get_html Methode:
 Wird beim Auswählen des Plugins (vor dem Starten, also vor der Run Methode) aufgerufen. Ihr Return wert sollte eine Website beinhalten und wird auf der Website angezeigt. Dieser Return wert, diese Website bildet eure eigentliche Eingabe. Hier **müssen alle Inputfelder definiert** werden. Mehr dazu im folgenden Abschnitt Input.
+
+---
+---
+
+### Der Weg des Inputs
+
+```mermaid
+graph  LR;
+user{Nutzer}
+
+user{Nutzer} -.-> | 0 Startet Plugin| plugin((plugin));
+plugin((plugin)) ---> |1 Inputseite| base[base.py];
+base[base.py] -- 2 Inputseite --> webApp.py;
+base[base.py] -- 2.5 Inputseite --> user{Nutzer};
+user{Nutzer} -- 3 Klickt Input --> webApp.py;
+webApp.py -- 4 sendet Input --> base[base.py];
+base[base.py] -- 5 sendet Input --> plugin((plugin));
+plugin((plugin)) -- 6 bearbeitet Input --> plugin((plugin));
+plugin((plugin)) -- Output --> pb(Pixel Board);
+```
 
 ---
 ---
@@ -173,5 +193,4 @@ Alle Klassen besitzen folgende Methoden, welche von dem Plugin benutzt werden m�
 | fill_all | -Farbe als Tupel mit 3 werten (r, g, b) 0-254 | Setzt der ganze Bord auf die angegebene Farbe | `self.out.fill_all((0, 0, 0))` |
 | out[x, y] | Koordinaten | Setzt einen Pixel | `self.out[0, 0] = (0, 0, 0)` |
 | submit_all | - | Überträgt die Änderungen | `self.out.submit_all()` |
-| set_matrix | -Matrix (2 dimensional Array of Tupels) | setzt die ganze Matrix | `self.matrix.out(testMatrix)` |
-
+| set_matrix | -Matrix (2 dimensional Array of Tupels) | setzt die ganze Matrix | `self.out.set_matrix(testMatrix)` |
