@@ -1,12 +1,12 @@
 # Created on Sat Feb 5 23:12 2022
 # @author: Jan
     
-from Plugins.Plugin import Plugin
+from ..basePlugin import BasePlugin
 import math
 import random
 import time
 
-class BootPlugin(Plugin):
+class BootPlugin(BasePlugin):
     
 #--------------------------
     bgMode = True
