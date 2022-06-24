@@ -143,8 +143,6 @@ class BootPlugin(BasePlugin):
         if(new != self.prev):
             self.prev = new
             self.matrix.set_matrix(new)
-            if (self.boardMode == False):
-                self.matrix.delete_canvas()
             self.matrix.submit_all()
     
     def paintLanding(self):
