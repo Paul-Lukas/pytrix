@@ -1,19 +1,23 @@
 # Created on Sat Feb 5 23:12 2022
 # @author: Jan
     
+#from Plugins.Plugin import Plugin
 from ..basePlugin import BasePlugin
 import math
 import random
 import time
 
-class BootPlugin(BasePlugin):
-    
+class Tetrix(BasePlugin):
+    def __init__(self, app, output):
+        super().__init__(app, output)
+        self.pluginName = "EpicPl_stinkt"
+        self.version = "0.69"
 #--------------------------
-    bgMode = True
+    bgMode = False
     defaultBg = (1,1,1)
-    epilepsipepsiMode = False
+    epilepsipepsiMode = True
     
-    boardMode = True
+    boardMode = False
     
     dummyMode = True
     randomRotations = True
@@ -142,8 +146,8 @@ class BootPlugin(BasePlugin):
                         return False
         if(new != self.prev):
             self.prev = new
-            self.matrix.set_matrix(new)
-            self.matrix.submit_all()
+            self.out.set_matrix(new)
+            self.out.submit_all()
     
     def paintLanding(self):
         self.paint()
@@ -553,10 +557,67 @@ class BootPlugin(BasePlugin):
     
     
     def run(self):
-        self.matrix.set_matrix(self.prev)
-        self.matrix.submit_all()
+        self.out.set_matrix(self.prev)
+        self.out.submit_all()
         
         self.game_start()
         self.game_refresh()
         
         self.mainLoop()
+        
+    def input(self, inp):
+        randomVar = inp.get("Wert")
+        if(randomVar == 1):
+            self.rMove("blub")
+        if(randomVar == 2):
+            self.lMove("blub")
+        if(randomVar == 3):
+            self.dMove("blub")
+        if(randomVar == 4):
+            self.cwRotation("blub")
+        if(randomVar == 5):
+            self.ccwRotation("blub")
+
+    def get_html(self):
+        return """
+    <h1 onclick="r()">r_move</h1>
+    <h1 onclick="l()">l_move</h1>
+    <h1 onclick="d()">l_move</h1>
+    <h1 onclick="cw()">l_move</h1>
+    <h1 onclick="ccw()">l_move</h1>
+
+    <script>
+    function r() {		
+            alert("mein anzuzeigender Text");
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open( "GET", "/plugin/{{ start_id }}/input?Wert=1", false );
+            xmlHttp.send( null );
+    }
+    function l() {		
+            alert("mein anzuzeigender Text");
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open( "GET", "/plugin/{{ start_id }}/input?Wert=2", false );
+            xmlHttp.send( null );
+    }
+    function d() {		
+            alert("mein anzuzeigender Text");
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open( "GET", "/plugin/{{ start_id }}/input?Wert=3", false );
+            xmlHttp.send( null );
+    }
+    function cw() {		
+            alert("mein anzuzeigender Text");
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open( "GET", "/plugin/{{ start_id }}/input?Wert=4", false );
+            xmlHttp.send( null );
+    }
+    function ccw() {		
+            alert("mein anzuzeigender Text");
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open( "GET", "/plugin/{{ start_id }}/input?Wert=5", false );
+            xmlHttp.send( null );
+    }
+
+    </script>
+    """
+             
