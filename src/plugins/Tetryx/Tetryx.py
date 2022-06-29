@@ -10,13 +10,13 @@ import time
 class Tetrix(BasePlugin):
     def __init__(self, app, output):
         super().__init__(app, output)
-        self.pluginName = "BlaBla"
+        self.pluginName = "EpicPl_stinkt"
         self.version = "6.9"
     
 #--------------------------
     boardMode = True
     
-    bgMode = False
+    bgMode = True
     epilepsipepsiMode = True
     dummyMode = False
     randomRotations = False
@@ -593,27 +593,32 @@ class Tetrix(BasePlugin):
      </tr>
     </table>
     <script>
-    function r() {		
+    function r() {
+        alert("1/r")
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.open( "GET", "/plugin/{{ start_id }}/input?Wert=1", false );
         xmlHttp.send( null );
     }
-    function l() {		
+    function l() {
+        alert("2/l")
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.open( "GET", "/plugin/{{ start_id }}/input?Wert=2", false );
         xmlHttp.send( null );
     }
-    function d() {		
+    function d() {
+        alert("3/d")
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.open( "GET", "/plugin/{{ start_id }}/input?Wert=3", false );
         xmlHttp.send( null );
     }
-    function cw() {		
+    function cw() {
+        alert("4/cw")
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.open( "GET", "/plugin/{{ start_id }}/input?Wert=4", false );
         xmlHttp.send( null );
     }
-    function ccw() {		
+    function ccw() {
+        alert("5/ccw")
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.open( "GET", "/plugin/{{ start_id }}/input?Wert=5", false );
         xmlHttp.send( null );
