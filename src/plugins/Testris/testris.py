@@ -10,14 +10,14 @@ class Testris(BasePlugin):
         self.version = "pre 0.1"
 
     def run(self):
-        pass
+        return ""
 
     def input(self, inp):
         if int(inp.get("inp_id")) == 1:
             self.corners()
         else:
             self.line()
-        return ""            
+        return ""
       
     def corners(self):
         self.out[0, 0] = (0, 0, 255)
