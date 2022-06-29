@@ -46,7 +46,6 @@ class NeoMatrix:
 
         for i in range(len(changes)):
             pixelChange = (self.utils.getNumForCords(changes[i][0], changes[i][1], self.height))
-            print(pixelChange)
             self.__pixels[pixelChange] = self.matrix[changes[i][0]][changes[i][1]]
         self.__pixels.write()
 
