@@ -40,6 +40,7 @@ class NeoMatrix:
         """
         Writes all the changes to tne Neopixel String
         """
+        print(self.matrix)
         changes = self.utils.getChangedIndices(self.omatrix, self.matrix)
 
         self.omatrix = [row[:] for row in self.matrix]
