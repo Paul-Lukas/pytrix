@@ -10,6 +10,7 @@ class Testris(BasePlugin):
         self.version = "pre 0.1"
 
     def run(self):
+        self.line()
         return ""
 
     def input(self, inp):
