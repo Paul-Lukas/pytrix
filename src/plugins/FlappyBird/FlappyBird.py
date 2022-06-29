@@ -16,15 +16,15 @@ class FlappyBird(BasePlugin):
 
     def __init__(self, app, output):
         super().__init__(app, output)
-        #self.pluginName = "Flappy-Bird"
+        self.pluginName = "Flappy-Bird"
         self.version = "pre 0.1"
 
 
     def run(self):
-        game = [[0 for j in range(self.height)] for i in range(self.width)]
+        self.game = [[0 for j in range(self.height)] for i in range(self.width)]
         for i in range(self.width):
             for j in range(self.height):
-                game[i][j] = 0
+                self.game[i][j] = 0
         self.initPlayer()
         self.clock()
 
@@ -202,7 +202,7 @@ class FlappyBird(BasePlugin):
         tupleMatrix = [[(0, 0, 0) for j in range(15)] for i in range(30)]
         for a in range(self.width):
             for b in range(self.height):
-                self.matrix[a, b] = self.getColor(self.game[a][b])
+                self.tupleMatrix[a][b] = self.getColor(self.game[a][b])
 
         self.out.set_matrix(tupleMatrix)
         self.out.submit_all()
