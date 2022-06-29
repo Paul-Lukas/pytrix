@@ -1,4 +1,5 @@
 from ..basePlugin import BasePlugin
+import os
 
 
 class Testris(BasePlugin):
