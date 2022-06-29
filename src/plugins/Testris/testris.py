@@ -15,14 +15,14 @@ class Testris(BasePlugin):
             self.corners()
         else:
             self.line()
-            
+        return ""            
       
     def corners(self):
         self.out[0, 0] = (0, 0, 255)
         self.out[14, 0] = (0, 255, 255)
         self.out[0, 29] = (0, 255, 255)
         self.out[14, 29] = (0, 255, 0)
-        
+
     def line(self):
         for i in range(30):
             for j in range(15):
