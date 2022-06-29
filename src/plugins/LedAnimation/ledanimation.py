@@ -82,7 +82,7 @@ class LEDAnimation(BasePlugin):
                         self.out[x, y] = (255, 255, 0)
                     else:
                         self.out[x, y] = (0, 0, 0)
-            self.matrix.submit_all()
+            self.out.submit_all()
 
         def random():
             reloadboardrandom(randint(1,5),randint(1,5),randint(1,5),randint(1,5))
