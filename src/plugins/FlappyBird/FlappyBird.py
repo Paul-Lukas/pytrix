@@ -202,7 +202,7 @@ class FlappyBird(BasePlugin):
         tupleMatrix = [[(0, 0, 0) for j in range(15)] for i in range(30)]
         for a in range(self.width):
             for b in range(self.height):
-                self.tupleMatrix[a][b] = self.getColor(self.game[a][b])
+                tupleMatrix[a][b] = self.getColor(self.game[a][b])
 
         self.out.set_matrix(tupleMatrix)
         self.out.submit_all()
