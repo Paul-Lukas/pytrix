@@ -12,7 +12,7 @@ class WebApp:
     def set_endpoints(self):
         self.app.add_url_rule('/', 'menu', self.main_menu, methods=['get'])
         self.app.add_url_rule('/plugin/<int:plug_id>', 'plugin', self.plugin, methods=['get'])
-        self.app.add_url_rule('/plugin/<string:plug_id>/input', 'plug_input', self.input, methods=['get'])
+        self.app.add_url_rule('/plugin/<string:plug_id>/input', 'input', self.input, methods=['get'])
 
     def input(self, plug_id):
         plug_id = int(plug_id)
