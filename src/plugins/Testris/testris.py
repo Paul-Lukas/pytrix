@@ -8,7 +8,7 @@ class Testris(BasePlugin):
         self.version = "pre 0.1"
 
     def run(self):
-		pass
+        pass
 
     def input(self, inp):
         if int(inp.get("inp_id")) == 1:
@@ -33,8 +33,8 @@ class Testris(BasePlugin):
 
                 time.sleep(0.25)
                 self.out.submit_all()
-    
-	def get_html(self):
-	    path = os.path.join(pathlib.Path(__file__).parent.resolve(), 'testris.html')
+                
+        def get_html(self):
+            path = os.path.join(pathlib.Path(__file__).parent.resolve(), 'testris.html')
         with open(path, "r") as f:
             return f.read()
