@@ -34,7 +34,7 @@ class Testris(BasePlugin):
                 time.sleep(0.25)
                 self.out.submit_all()
                 
-        def get_html(self):
-            path = os.path.join(pathlib.Path(__file__).parent.resolve(), 'testris.html')
+    def get_html(self):
+        path = os.path.join(pathlib.Path(__file__).parent.resolve(), 'testris.html')
         with open(path, "r") as f:
             return f.read()
