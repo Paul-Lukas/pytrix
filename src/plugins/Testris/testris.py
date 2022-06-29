@@ -1,5 +1,6 @@
 from ..basePlugin import BasePlugin
 import os
+import pathlib
 
 
 class Testris(BasePlugin):
