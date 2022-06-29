@@ -199,10 +199,10 @@ class FlappyBird(BasePlugin):
 
 
     def translator(self):
-        tupleMatrix = [[(0, 0, 0) for j in range(15)] for i in range(30)]
+        tupleMatrix = [[(0, 0, 0) for j in range(self.width)] for i in range(self.height)]
         for a in range(self.width):
             for b in range(self.height):
-                tupleMatrix[a][b] = self.getColor(self.game[a][b])
+                tupleMatrix[a, b] = self.getColor(self.game[a][b])
 
         self.out.set_matrix(tupleMatrix)
         self.out.submit_all()
