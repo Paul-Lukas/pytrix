@@ -67,7 +67,7 @@ class Base:
                                 plugin = c(self, self.output)
                                 plugin_item = (i, plugin.pluginName, plugin)
                                 self.plugins.append(plugin_item)
-                                i = + 1
+                                i = i + 1
                                 print(f'    Finished plugin class: {c.__module__}.{c.__name__}')
                     except Exception as e:
                         print("Error trying to add Plugin: ")
