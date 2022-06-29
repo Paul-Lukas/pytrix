@@ -10,17 +10,18 @@ import time
 class Tetrix(BasePlugin):
     def __init__(self, app, output):
         super().__init__(app, output)
-        self.pluginName = "EpicPl_stinkt"
-        self.version = "0.69"
+        self.pluginName = "BlaBla"
+        self.version = "6.9"
+    
 #--------------------------
+    boardMode = True
+    
     bgMode = False
-    defaultBg = (1,1,1)
-    epilepsipepsiMode = True
-    
-    boardMode = False
-    
+    epilepsipepsiMode = False
     dummyMode = True
     randomRotations = True
+    
+    defaultBg = (1,1,1)
 #--------------------------
 
     game_speed = 0.2
@@ -564,7 +565,7 @@ class Tetrix(BasePlugin):
         self.game_refresh()
         
         self.mainLoop()
-        
+
     def input(self, inp):
         randomVar = inp.get("Wert")
         if(randomVar == 1):
@@ -579,45 +580,44 @@ class Tetrix(BasePlugin):
             self.ccwRotation("blub")
 
     def get_html(self):
-        return """
-    <h1 onclick="r()">r_move</h1>
-    <h1 onclick="l()">l_move</h1>
-    <h1 onclick="d()">l_move</h1>
-    <h1 onclick="cw()">l_move</h1>
-    <h1 onclick="ccw()">l_move</h1>
-
+        return """<h1>Tetryx_6.9</h1>
+    <table border="1" align="left">
+     <tr>
+      <th onclick="ccw()">ccw_move</th>
+      <th> </th>
+      <th onclick="cw()">cw_move</th>
+     </tr><tr>
+      <td onclick="l()">l_move</td>
+      <td onclick="d()">d_move</td>
+      <td onclick="r()">r_move</td>
+     </tr>
+    </table>
     <script>
     function r() {		
-            alert("mein anzuzeigender Text");
-            var xmlHttp = new XMLHttpRequest();
-            xmlHttp.open( "GET", "/plugin/{{ start_id }}/input?Wert=1", false );
-            xmlHttp.send( null );
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", "/plugin/{{ start_id }}/input?Wert=1", false );
+        xmlHttp.send( null );
     }
     function l() {		
-            alert("mein anzuzeigender Text");
-            var xmlHttp = new XMLHttpRequest();
-            xmlHttp.open( "GET", "/plugin/{{ start_id }}/input?Wert=2", false );
-            xmlHttp.send( null );
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", "/plugin/{{ start_id }}/input?Wert=2", false );
+        xmlHttp.send( null );
     }
     function d() {		
-            alert("mein anzuzeigender Text");
-            var xmlHttp = new XMLHttpRequest();
-            xmlHttp.open( "GET", "/plugin/{{ start_id }}/input?Wert=3", false );
-            xmlHttp.send( null );
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", "/plugin/{{ start_id }}/input?Wert=3", false );
+        xmlHttp.send( null );
     }
     function cw() {		
-            alert("mein anzuzeigender Text");
-            var xmlHttp = new XMLHttpRequest();
-            xmlHttp.open( "GET", "/plugin/{{ start_id }}/input?Wert=4", false );
-            xmlHttp.send( null );
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", "/plugin/{{ start_id }}/input?Wert=4", false );
+        xmlHttp.send( null );
     }
     function ccw() {		
-            alert("mein anzuzeigender Text");
-            var xmlHttp = new XMLHttpRequest();
-            xmlHttp.open( "GET", "/plugin/{{ start_id }}/input?Wert=5", false );
-            xmlHttp.send( null );
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", "/plugin/{{ start_id }}/input?Wert=5", false );
+        xmlHttp.send( null );
     }
 
-    </script>
-    """
+    </script>"""
              
