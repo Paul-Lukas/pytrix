@@ -41,13 +41,13 @@ class NeoMatrix:
         Writes all the changes to tne Neopixel String
         """
         changes = self.utils.getChangedIndices(self.omatrix, self.matrix)
-        print(changes)
         
         self.omatrix = [row[:] for row in self.matrix]
 
         for i in range(len(changes)):
-            pixelChange = (self.utils.getNumForCords(changes[i][0], changes[i][0], self.height))
-            self.__pixels[pixelChange] = self.matrix[changes[i][0]][changes[i][0]]
+            pixelChange = (self.utils.getNumForCords(changes[i][0], changes[i][1], self.height))
+            print(pixelchange)
+            self.__pixels[pixelChange] = self.matrix[changes[i][0]][changes[i][1]]
         self.__pixels.write()
 
     def fill_all(self, color: tuple):
