@@ -23,8 +23,8 @@ class NeoMatrix:
         self.__pixels = pixels
         self.utils = Utils()
 
-        self.matrix = [[(0, 0, 0) for j in range(height)] for i in range(width)]
-        self.omatrix = [[(0, 0, 0) for j in range(height)] for i in range(width)]
+        self.matrix = [[(0, 0, 0) for _ in range(height)] for _ in range(width)]
+        self.omatrix = [[(0, 0, 0) for _ in range(height)] for _ in range(width)]
 
     def __getitem__(self, item):
         if len(item) != 2:

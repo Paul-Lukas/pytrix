@@ -3,6 +3,10 @@ import os
 import pathlib
 import pkgutil
 
+import requests
+import zipfile
+import shutil
+
 from src.input.webApp import WebApp
 from src.plugins.basePlugin import BasePlugin
 
@@ -13,6 +17,9 @@ class Base:
 
         width = config.get_config()['main']['width']
         height = config.get_config()['main']['height']
+
+        self.blocklist = ["__pycache__", "system", "basePlugin.py", "__init__.py"]
+
 
         if self.config.get_config()['main']['use Simulation Gui'] == "True":
             # TODO: use sim not shellout (make Tkinter work with threads)
@@ -34,7 +41,6 @@ class Base:
             self.output = NeoMatrix(int(width), int(height), pixels)
 
         self.plugins = []
-        self.generate_plugin_list()
 
     def generate_plugin_list(self):
         i = 0
@@ -43,8 +49,7 @@ class Base:
 
         dir_content = os.listdir(rootpath)
         for content in dir_content:
-            # TODO: change to block list
-            if content == '__pycache__':
+            if content in self.blocklist:
                 continue
 
             if os.path.isdir(os.path.join(rootpath, content)):
@@ -82,7 +87,41 @@ class Base:
     def input_plugin(self, plug_id, input_str):
         return self.plugins[int(plug_id)][2].input(input_str)
 
+    def download_plugins(self):
+        #TODO: Get repo Url from Config
+        #TODO: Add Try catch
+        url = "https://github.com/Paul-Lukas/pytrix_plugins/archive/refs/heads/main.zip"
+        save_path = os.path.join(pathlib.Path(__file__).parent.resolve(), 'plugins/system/plugins.zip')
+        to_path = os.path.join(pathlib.Path(__file__).parent.resolve(), 'plugins/system/')
+        plug_path = os.path.join(pathlib.Path(__file__).parent.resolve(), 'plugins/')
+
+        r = requests.get(url, stream=True)
+        with open(save_path, 'wb') as f:
+            for chunk in r.iter_content(chunk_size=128):
+                f.write(chunk)
+
+        with zipfile.ZipFile(save_path, 'r') as zip_ref:
+            zip_ref.extractall(to_path)
+        os.remove(save_path)
+
+        file_names = os.listdir(plug_path)
+        for file_name in file_names:
+            if file_name in self.blocklist:
+                continue
+            shutil.rmtree(os.path.join(plug_path, file_name))
+
+        dir_names = os.listdir(os.path.join(to_path, "pytrix_plugins-main", "plugins"))
+        for dir_name in dir_names:
+            if os.path.isdir(os.path.join(to_path, "pytrix_plugins-main", "plugins", dir_name)):
+                os.mkdir(os.path.join(plug_path, dir_name))
+                file_names = os.listdir(os.path.join(to_path, "pytrix_plugins-main", "plugins", dir_name))
+                for file_name in file_names:
+                    shutil.move(os.path.join(to_path, "pytrix_plugins-main", "plugins", dir_name, file_name), os.path.join(plug_path, dir_name, file_name))
+
     def run(self):
+        self.download_plugins()
+        print("Plugin Download finished")
+        self.generate_plugin_list()
         print("trying to create Webinterface")
         web_app = WebApp(self)
         web_app.run()

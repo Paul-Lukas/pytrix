@@ -14,15 +14,15 @@ class Shellout:
     __pixels = object
 
     def __init__(self, width: int, height: int):
+        self.colors = []
+
         self.width = int(width)
         self.height = int(height)
 
         self.utils = Utils()
 
-        # noinspection PyUnusedLocal
-        self.matrix = [[(0, 0, 0) for j in range(self.height)] for i in range(self.width)]
-        # noinspection PyUnusedLocal
-        self.omatrix = [[(0, 0, 0) for j in range(self.height)] for i in range(self.width)]
+        self.matrix = [[(0, 0, 0) for _ in range(self.height)] for _ in range(self.width)]
+        self.omatrix = [[(0, 0, 0) for _ in range(self.height)] for _ in range(self.width)]
 
     def __getitem__(self, item):
         if len(item) != 2:
@@ -38,13 +38,17 @@ class Shellout:
         """
         Writes all the changes to tne Neopixel String
         """
-        changes = self.utils.getChangedIndices(self.omatrix, self.matrix)
+        for row in self.matrix:
+            print(self.get_out(row))
+        print("--------------------------------------------------------------------------------------------")
 
-        self.omatrix = [row[:] for row in self.matrix]
-
-        for i in range(len(changes)):
-            pixelChange = (self.utils.getNumForCords(changes[i][0], changes[i][0], self.height))
-            print(pixelChange)
+    def get_out(self, row):
+        ret_row = []
+        for color in row:
+            if color not in self.colors:
+                self.colors.append(color)
+            ret_row.append(self.colors.index(color))
+        return ret_row
 
     def fill_all(self, color: tuple):
         """
