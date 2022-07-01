@@ -21,10 +21,12 @@ class WebApp:
         # main application has id -1
         if plug_id == -1:
             start_id = input_str.get("start_id")
-            return self.base.run_plugin(start_id)
+            self.base.run_plugin(start_id)
+            return ""
         else:
             # todo: disable passing input if plugin does not run
-            return self.base.input_plugin(plug_id, input_str)
+            self.base.input_plugin(plug_id, input_str)
+            return ""
 
     def plugin(self, plug_id):
         plugin_id, plugin_name, plugin = self.plugins[int(plug_id)]
