@@ -28,7 +28,7 @@
     document.getElementById("start_popup_underlay").remove();
 
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "/plugin/-1/input?start_id={{ start_id }}", false ); // false for synchronous request
+    xmlHttp.open( "GET", "/plugin/-1/input?start_id={{ start_id }}", true ); // false for synchronous request
     xmlHttp.send( null );
 
     // TODO: Add Output after Plugin is finished

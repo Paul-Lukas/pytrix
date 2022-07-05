@@ -20,7 +20,6 @@ class Base:
 
         self.blocklist = ["__pycache__", "system", "basePlugin.py", "__init__.py"]
 
-
         if self.config.get_config()['main']['use Simulation Gui'] == "True":
             # TODO: use sim not shellout (make Tkinter work with threads)
             print("Importing Sim")
@@ -88,8 +87,8 @@ class Base:
         return self.plugins[int(plug_id)][2].input(input_str)
 
     def download_plugins(self):
-        #TODO: Get repo Url from Config
-        #TODO: Add Try catch
+        # TODO: Get repo Url from Config
+        # TODO: Add Try catch
         url = "https://github.com/Paul-Lukas/pytrix_plugins/archive/refs/heads/main.zip"
         save_path = os.path.join(pathlib.Path(__file__).parent.resolve(), 'plugins/system/plugins.zip')
         to_path = os.path.join(pathlib.Path(__file__).parent.resolve(), 'plugins/system/')
