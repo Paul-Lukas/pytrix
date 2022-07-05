@@ -87,9 +87,8 @@ class Base:
         return self.plugins[int(plug_id)][2].input(input_str)
 
     def download_plugins(self):
-        # TODO: Get repo Url from Config
         # TODO: Add Try catch
-        url = "https://github.com/Paul-Lukas/pytrix_plugins/archive/refs/heads/main.zip"
+        url = self.config.get_config()['main']['Update Url']
         save_path = os.path.join(pathlib.Path(__file__).parent.resolve(), 'plugins/system/plugins.zip')
         to_path = os.path.join(pathlib.Path(__file__).parent.resolve(), 'plugins/system/')
         plug_path = os.path.join(pathlib.Path(__file__).parent.resolve(), 'plugins/')
