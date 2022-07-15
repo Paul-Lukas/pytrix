@@ -87,20 +87,22 @@ class Base:
         return self.plugins[int(plug_id)][2].input(input_str)
 
     def download_plugins(self):
-        # TODO: Add Try catch
+        # TODO: Add Try except
         url = self.config.get_config()['main']['Update Url']
-        save_path = os.path.join(pathlib.Path(__file__).parent.resolve(), 'plugins/system/plugins.zip')
-        to_path = os.path.join(pathlib.Path(__file__).parent.resolve(), 'plugins/system/')
-        plug_path = os.path.join(pathlib.Path(__file__).parent.resolve(), 'plugins/')
+        plug_path = os.path.join(pathlib.Path(__file__).parent.resolve(), 'plugins')
+        plug_system_path = os.path.join(plug_path, 'system')
+        plug_zip_path = os.path.join(plug_system_path, 'plugins.zip')
 
         r = requests.get(url, stream=True)
-        with open(save_path, 'wb') as f:
+        with open(plug_zip_path, 'wb') as f:
             for chunk in r.iter_content(chunk_size=128):
                 f.write(chunk)
 
-        with zipfile.ZipFile(save_path, 'r') as zip_ref:
-            zip_ref.extractall(to_path)
-        os.remove(save_path)
+        with zipfile.ZipFile(plug_zip_path, 'r') as zip_ref:
+            zip_ref.extractall(plug_system_path)
+        os.remove(plug_zip_path)
+
+        print('     Downloaded and extracted zip-file')
 
         file_names = os.listdir(plug_path)
         for file_name in file_names:
@@ -108,13 +110,17 @@ class Base:
                 continue
             shutil.rmtree(os.path.join(plug_path, file_name))
 
-        dir_names = os.listdir(os.path.join(to_path, "pytrix_plugins-main", "plugins"))
+        dir_names = os.listdir(os.path.join(plug_system_path, "pytrix_plugins-main", "plugins"))
         for dir_name in dir_names:
-            if os.path.isdir(os.path.join(to_path, "pytrix_plugins-main", "plugins", dir_name)):
+            if os.path.isdir(os.path.join(plug_system_path, "pytrix_plugins-main", "plugins", dir_name)):
                 os.mkdir(os.path.join(plug_path, dir_name))
-                file_names = os.listdir(os.path.join(to_path, "pytrix_plugins-main", "plugins", dir_name))
+                file_names = os.listdir(os.path.join(plug_system_path, "pytrix_plugins-main", "plugins", dir_name))
                 for file_name in file_names:
-                    shutil.move(os.path.join(to_path, "pytrix_plugins-main", "plugins", dir_name, file_name), os.path.join(plug_path, dir_name, file_name))
+                    shutil.move(
+                        os.path.join(plug_system_path, "pytrix_plugins-main", "plugins", dir_name, file_name),
+                        os.path.join(plug_path, dir_name, file_name)
+                    )
+        print('     moved plugins')
 
     def run(self):
         self.download_plugins()

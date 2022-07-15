@@ -1,5 +1,6 @@
 import configparser
 import os
+import pathlib
 
 
 class Config:
@@ -7,26 +8,36 @@ class Config:
         self.config_version = "0.3"
 
         self.config = configparser.ConfigParser()
-        dirName = os.path.dirname(os.path.abspath(__file__))
-        self.fileName = os.path.join(dirName, "..", "config.txt")
-        if not os.path.exists(self.fileName):
+
+        self.config_path = os.path.join(pathlib.Path(__file__).parent.parent.resolve(), 'config.txt')
+
+        if not os.path.exists(self.config_path):
             print("Config generated")
             self.generate_defaults()
         else:
             print("Config exists")
             if not self.check_config():
-                os.remove(self.fileName)
+                print("     Config failed version check")
+                os.remove(self.config_path)
+                print("     -> Generating new Config")
                 self.generate_defaults()
             else:
                 self.read_config()
 
     def generate_defaults(self):
-        self.config['main'] = {'Version': self.config_version, 'Update Url': 'https://github.com/Paul-Lukas/pytrix_plugins/archive/refs/heads/main.zip', 'use Simulation Gui': True, 'width': 15, 'height': 30, 'orientation': '1'}
+        self.config['main'] = {
+            'Version': self.config_version,
+            'Update Url': 'https://github.com/Paul-Lukas/pytrix_plugins/archive/refs/heads/main.zip',
+            'use Simulation Gui': True,
+            'width': 15,
+            'height': 30,
+            'orientation': '1'
+        }
         self.write_config(self.config)
 
     def read_config(self):
-        print("Config read:")
-        print(self.config.read(self.fileName))
+        print("Config read")
+        print(self.config.read(self.config_path))
 
     def get_config(self):
         return self.config
@@ -36,7 +47,7 @@ class Config:
         self.write_config(self.config)
 
     def write_config(self, config):
-        with open(self.fileName, "w") as configfile:
+        with open(self.config_path, "w") as configfile:
             config.write(configfile)
             print("Config saved")
 
@@ -46,9 +57,6 @@ class Config:
 
         if self.config['main']['version'] != self.config_version:
             return False
-        return True
 
-    # TODO: register plugins with individual config
-    def register_plugin(self, name, version):
-        self.config[name] = {'version': version}
-        self.write_config(self.config)
+        # TODO: Check if config is complete
+        return True
