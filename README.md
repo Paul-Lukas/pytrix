@@ -2,6 +2,16 @@
 
 # Configuration
 
+## Version
+#### !!! DO NOT CHANGE!!!
+Version is internally used to check, if the config-file is up-to-date
+
+## Update Url
+Url of the Update repository to download / update the plugins from. Must point to a zip file which contains a folder 
+`plugins` which contains the plugins, each in its own folder
+* Type: `string`
+* Default value: `https://github.com/Paul-Lukas/pytrix_plugins/archive/refs/heads/main.zip`
+
 ## use Simulation Gui
 
 use Simulation instead of the Hardware Output
