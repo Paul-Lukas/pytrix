@@ -16,7 +16,7 @@ class Config:
             self.generate_defaults()
         else:
             print("Config exists")
-            if not self.check_config():
+            if self.check_config():
                 print("     Config failed version check")
                 os.remove(self.config_path)
                 print("     -> Generating new Config")
