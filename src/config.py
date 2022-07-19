@@ -26,7 +26,7 @@ class Config:
 
     def generate_defaults(self):
         self.config['main'] = {
-            'Version': self.config_version,
+            'version': self.config_version,
             'Update Url': 'https://github.com/Paul-Lukas/pytrix_plugins/archive/refs/heads/main.zip',
             'use Simulation Gui': True,
             'width': 15,
@@ -52,7 +52,7 @@ class Config:
             print("Config saved")
 
     def check_config(self) -> bool:
-        if not self.config.has_option('main', 'Version'):
+        if not self.config.has_option('main', 'version'):
             return False
 
         if self.config['main']['version'] != self.config_version:
