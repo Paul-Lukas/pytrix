@@ -21,11 +21,11 @@ class WebApp:
 
         # main application has id -1
         if plug_id == -1:
-            if self.plugin_running != 0:
+            #if self.plugin_running != 0:
                 # TODO: Anzeige, dass schon Plugin läuft
-                print(
-                    f"plugin {self.plugin_running} is already running, unable to start more than one plugin at the same time")
-                return ""
+            #    print(
+            #        f"plugin {self.plugin_running} is already running, unable to start more than one plugin at the same time")
+            #    return ""
 
             start_id = input_str.get("start_id")
             self.plugin_running = start_id
