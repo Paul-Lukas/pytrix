@@ -6,6 +6,8 @@ import pkgutil
 import requests
 import zipfile
 import shutil
+import asyncio
+
 
 from src.input.webApp import WebApp
 from src.plugins.basePlugin import BasePlugin
@@ -81,7 +83,13 @@ class Base:
         return self.plugins[int(plug_id)][2].get_html()
 
     async def run_plugin(self, plug_id):
-        self.plugins[int(plug_id)][2].run()
+        try:
+            self.plugins[int(plug_id)][2].run()
+        except asyncio.CancelledError as e:
+            print("Stopping Plugin")
+        finally:
+            print("Plugin stopped")
+            
         # TODO: Reverte Hotfix
         
     def input_plugin(self, plug_id, input_str):
