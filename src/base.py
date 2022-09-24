@@ -83,7 +83,6 @@ class Base:
     def run_plugin(self, plug_id):
         self.plugins[int(plug_id)][2].run()
         # TODO: Reverte Hotfix
-        return 
         
     def input_plugin(self, plug_id, input_str):
         return self.plugins[int(plug_id)][2].input(input_str)
