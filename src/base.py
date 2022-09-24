@@ -80,7 +80,7 @@ class Base:
     def get_plugin_site(self, plug_id):
         return self.plugins[int(plug_id)][2].get_html()
 
-    def run_plugin(self, plug_id):
+    async def run_plugin(self, plug_id):
         self.plugins[int(plug_id)][2].run()
         # TODO: Reverte Hotfix
         
