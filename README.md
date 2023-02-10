@@ -1,4 +1,6 @@
 # pytrix
+#### !!! does not work, won't be fixed !!! ####
+
 
 # Configuration
 
